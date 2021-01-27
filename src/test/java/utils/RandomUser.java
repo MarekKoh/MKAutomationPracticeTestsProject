@@ -7,10 +7,10 @@ public class RandomUser {
     public String lastName;
     public String email;
     Boolean isRegistered = false;
-    String password = "1qaz!QAZ";
-    int yearOfBirth;
-    int dayOfBirth;
-    int monthOfBirth;
+    public String password = "1qaz!QAZ";
+    public int yearOfBirth;
+    public int dayOfBirth;
+    public int monthOfBirth;
     String postalCode;
     String state;
     String address1;
@@ -26,6 +26,7 @@ public class RandomUser {
         this.monthOfBirth = faker.date().birthday().getMonth();
         this.postalCode = faker.address().zipCode();
         this.state = faker.address().state();
+        System.out.println(this);
     }
 
     @Override

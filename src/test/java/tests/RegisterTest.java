@@ -1,37 +1,50 @@
 package tests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import pageobjects.HomePage;
+import pageobjects.LoginPage;
+import pageobjects.RegisterPage;
 import utils.RandomUser;
 
 public class RegisterTest extends BaseTest {
 
     @Test
-    void shouldRegisterUserWhenMandatoryFieldsAreFilled(){
-        driver.get(BASE_URL);
-        // przejdź do login/register
-        driver.findElement(By.className("login")).click();
+    void shouldRegisterUserWhenMandatoryFieldsAreFilled() {
+        HomePage homePage = new HomePage(driver);
+        homePage.openPage();
+        homePage.goToLoginPage();
 
-        // utwórz losowego użytkownika
+        LoginPage loginPage = new LoginPage(driver);
         RandomUser randomUser = new RandomUser();
-        // zaloguj dane użytkownika
-        System.out.println(randomUser);
+        loginPage.goToRegisterPage(randomUser.email);
 
-        driver.findElement(By.id("email_create")).sendKeys(randomUser.email);
-        driver.findElement(By.id("email_create")).sendKeys(Keys.ENTER);
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.registerUser(randomUser);
 
-        driver.findElement(By.id("customer_firstname")).sendKeys(randomUser.firstName);
-        driver.findElement(By.id("customer_firstname")).sendKeys(randomUser.lastName);
+        Assertions.assertTrue(homePage.isUserLoggedIn());
+    }
 
-        // uzupełnij resztę wymaganych pól
-        // uzupełnij resztę wymaganych pól
-        // uzupełnij resztę wymaganych pól
+    @Test
+    void shouldDisplayCorrectAlertsWhenMandatoryDataIsMissing() {
+        HomePage homePage = new HomePage(driver);
+        homePage.openPage();
+        homePage.goToLoginPage();
 
-        // wyślij formularz
-        driver.findElement(By.id("submitAccount")).click();
+        LoginPage loginPage = new LoginPage(driver);
+        RandomUser randomUser = new RandomUser();
+        loginPage.goToRegisterPage(randomUser.email);
 
-        // jakaś asercja/asercje
+        RegisterPage registerPage = new RegisterPage(driver);
+        randomUser.lastName = "";
+        randomUser.firstName = "";
+        randomUser.password = "";
+        registerPage.registerUser(randomUser);
 
+        Assertions.assertTrue(registerPage.isAlertDisplayed("passwd is required."));
+        Assertions.assertTrue(registerPage.isAlertDisplayed("lastname is required."));
+        Assertions.assertTrue(registerPage.isAlertDisplayed("firstname is required."));
     }
 }
