@@ -11,6 +11,15 @@ public class LoginPage extends BasePage {
     @FindBy(id="email_create")
     WebElement emailCreateNewUserBox;
 
+    @FindBy(id="email")
+    WebElement emailAlreadyRegisteredUserBox;
+
+    @FindBy(id="passwd")
+    WebElement passwordAlreadyRegisteredUserBox;
+
+    @FindBy(id="SubmitLogin")
+    WebElement SubmitLoginButton;
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -18,5 +27,10 @@ public class LoginPage extends BasePage {
     public void goToRegisterPage(String email) {
         emailCreateNewUserBox.sendKeys(email);
         emailCreateNewUserBox.sendKeys(Keys.ENTER);
+    }
+    public void goToUsersAccountPage(String email, String password) {
+        emailAlreadyRegisteredUserBox.sendKeys(email);
+        passwordAlreadyRegisteredUserBox.sendKeys(password);
+        SubmitLoginButton.click();
     }
 }

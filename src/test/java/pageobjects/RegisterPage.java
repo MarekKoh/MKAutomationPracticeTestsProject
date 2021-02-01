@@ -62,15 +62,15 @@ public class RegisterPage extends BasePage {
     public void registerUser(RandomUser user){
         customerFirstName.sendKeys(user.firstName);
         customerLastName.sendKeys(user.lastName);
-        passwd.sendKeys((user.email));
+        passwd.sendKeys((user.password));
         day.selectByValue("" + user.dayOfBirth + "");
         month.selectByValue("" + user.monthOfBirth + "");
         year.selectByValue("" + user.yearOfBirth + "");
-//        address1.sendKeys(user.address1);
-//        city.sendKeys(user.city);
-//        postcode.sendKeys("" + user.zipCode);
-//        state.selectByVisibleText(user.state);
-//        phone_mobile.sendKeys(" " + user.mobile);
+        address1.sendKeys(user.address1);
+        city.sendKeys(user.city);
+        postcode.sendKeys(user.postalCode);
+        state.selectByVisibleText(user.state);
+        phone_mobile.sendKeys(" " + user.mobilePhone);
         submitButton.click();
     }
 }

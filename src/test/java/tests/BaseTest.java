@@ -28,7 +28,8 @@ class BaseTest {
     @AfterAll
     protected static void tearDown() throws InterruptedException {
         // tylko tymczasowo
-        Thread.sleep(3000);
+
+
         driver.quit();
     }
 

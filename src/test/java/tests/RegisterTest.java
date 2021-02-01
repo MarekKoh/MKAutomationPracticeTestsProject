@@ -28,7 +28,7 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    void shouldDisplayCorrectAlertsWhenMandatoryDataIsMissing() {
+    void shouldDisplayCorrectAlertsWhenPasswordIsMissing() {
         HomePage homePage = new HomePage(driver);
         homePage.openPage();
         homePage.goToLoginPage();
@@ -38,13 +38,9 @@ public class RegisterTest extends BaseTest {
         loginPage.goToRegisterPage(randomUser.email);
 
         RegisterPage registerPage = new RegisterPage(driver);
-        randomUser.lastName = "";
-        randomUser.firstName = "";
         randomUser.password = "";
         registerPage.registerUser(randomUser);
 
         Assertions.assertTrue(registerPage.isAlertDisplayed("passwd is required."));
-        Assertions.assertTrue(registerPage.isAlertDisplayed("lastname is required."));
-        Assertions.assertTrue(registerPage.isAlertDisplayed("firstname is required."));
     }
 }

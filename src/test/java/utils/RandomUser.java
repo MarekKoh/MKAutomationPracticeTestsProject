@@ -11,11 +11,14 @@ public class RandomUser {
     public int yearOfBirth;
     public int dayOfBirth;
     public int monthOfBirth;
-    String postalCode;
-    String state;
-    String address1;
-    String address2;
-    String city;
+    public String postalCode;
+    public String state;
+    public String address1;
+    public String address2;
+    public String city;
+    public String mobilePhone;
+
+
 
     public RandomUser() {
         Faker faker = new Faker();
@@ -26,6 +29,11 @@ public class RandomUser {
         this.monthOfBirth = faker.date().birthday().getMonth();
         this.postalCode = faker.address().zipCode();
         this.state = faker.address().state();
+        this.yearOfBirth = (faker.date().birthday().getYear() + 1900);
+        this.address1 = faker.address().streetAddress();
+        this.address2 = faker.address().streetAddress();
+        this.mobilePhone = faker.phoneNumber().cellPhone();
+        this.city = faker.address().city();
         System.out.println(this);
     }
 
