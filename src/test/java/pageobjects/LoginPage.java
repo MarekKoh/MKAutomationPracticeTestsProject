@@ -20,8 +20,19 @@ public class LoginPage extends BasePage {
     @FindBy(id="SubmitLogin")
     WebElement SubmitLoginButton;
 
+    @FindBy(xpath = "//a[@title='Log me out']")
+    WebElement signOutButton;
+
     public LoginPage(WebDriver driver) {
         super(driver);
+    }
+
+    public boolean isUserLoggedOut() {
+        return SubmitLoginButton.isDisplayed();
+    }
+
+    public boolean isUserLoggedIn() {
+        return signOutButton.isDisplayed();
     }
 
     public void goToRegisterPage(String email) {

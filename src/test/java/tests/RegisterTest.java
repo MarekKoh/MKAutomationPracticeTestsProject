@@ -24,7 +24,7 @@ public class RegisterTest extends BaseTest {
         RegisterPage registerPage = new RegisterPage(driver);
         registerPage.registerUser(randomUser);
 
-        Assertions.assertTrue(homePage.isUserLoggedIn());
+        Assertions.assertTrue(loginPage.isUserLoggedIn());
     }
 
     @Test

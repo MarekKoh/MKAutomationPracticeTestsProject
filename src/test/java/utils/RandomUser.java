@@ -25,9 +25,9 @@ public class RandomUser {
         this.firstName = faker.name().firstName();
         this.lastName = faker.name().lastName();
         this.email = this.firstName + this.lastName + faker.random().nextInt(100000) + "@gmail.com";
-        this.dayOfBirth = faker.date().birthday().getDay();
-        this.monthOfBirth = faker.date().birthday().getMonth();
-        this.postalCode = faker.address().zipCode();
+        this.dayOfBirth = faker.date().birthday().getDay() + 1;
+        this.monthOfBirth = faker.date().birthday().getMonth() +1;
+        this.postalCode = String.valueOf(faker.random().nextInt(10000, 99999));
         this.state = faker.address().state();
         this.yearOfBirth = (faker.date().birthday().getYear() + 1900);
         this.address1 = faker.address().streetAddress();

@@ -20,7 +20,20 @@ public class LoginTest extends BaseTest {
         loginPage.goToUsersAccountPage("abcd@gmail.com", "1qaz!QAZ");
         UsersAccountPage usersAccountPage = new UsersAccountPage(driver);
 
-        Assertions.assertEquals("MY ACCOUNT", driver.
-                findElement(By.xpath("//div[@id='center_column']/h1")).getText());
+        Assertions.assertTrue(usersAccountPage.
+                isMyAccountHeaderDisplayed("MY ACCOUNT"));
+    }
+    @Test
+    void shouldLogOut() {
+        HomePage homePage = new HomePage(driver);
+        homePage.openPage();
+        homePage.goToLoginPage();
+
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.goToUsersAccountPage("abcd@gmail.com", "1qaz!QAZ");
+        UsersAccountPage usersAccountPage = new UsersAccountPage(driver);
+        usersAccountPage.signUserOut();
+
+        Assertions.assertTrue(loginPage.isUserLoggedOut());
     }
 }

@@ -15,7 +15,7 @@ public class NewsletterTest extends BaseTest {
         homePage.openPage();
         RandomUser randomUser = new RandomUser();
         homePage.subscribeToNewsletter(randomUser.email);
-        BasePage basePage = new BasePage(driver);
-        Assertions.assertTrue(basePage.isNewsletterAlertDisplayed("Newsletter : You have successfully subscribed to this newsletter."));
+        Assertions.assertTrue(homePage.isNewsletterAlertDisplayed("Newsletter : You have successfully subscribed to this newsletter."));
+
     }
 }

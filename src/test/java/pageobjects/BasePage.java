@@ -16,9 +16,6 @@ public class BasePage {
     @FindBy(id="search_query_top")
     WebElement searchBox;
 
-    @FindBy(className="logout")
-    WebElement signOutButton;
-
     @FindBy(className="login")
     WebElement goToLoginPageButton;
 
@@ -28,27 +25,19 @@ public class BasePage {
     @FindBy(xpath = "//button[@name='submitNewsletter']" )
     WebElement submitNewsletterButton;
 
-    @FindBy(css = ".alert alert-success")
+    @FindBy(xpath = "//p[@class=\"alert alert-success\"]")
     WebElement newsletterSuccessAlert;
-
-
 
     public BasePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
     public void searchForProduct(String productName) {
         searchBox.sendKeys(productName);
         searchBox.sendKeys(Keys.ENTER);
     }
-
     public void goToLoginPage() {
         goToLoginPageButton.click();
-    }
-
-    public boolean isUserLoggedIn() {
-        return signOutButton.isDisplayed();
     }
 
     public void subscribeToNewsletter(String email) {
