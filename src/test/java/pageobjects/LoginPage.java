@@ -1,10 +1,10 @@
 package pageobjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage {
 
@@ -18,17 +18,17 @@ public class LoginPage extends BasePage {
     WebElement passwordAlreadyRegisteredUserBox;
 
     @FindBy(id="SubmitLogin")
-    WebElement SubmitLoginButton;
+    WebElement submitLoginButton;
 
     @FindBy(xpath = "//a[@title='Log me out']")
     WebElement signOutButton;
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
+    public LoginPage(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
     }
 
     public boolean isUserLoggedOut() {
-        return SubmitLoginButton.isDisplayed();
+        return submitLoginButton.isDisplayed();
     }
 
     public boolean isUserLoggedIn() {
@@ -42,6 +42,6 @@ public class LoginPage extends BasePage {
     public void goToUsersAccountPage(String email, String password) {
         emailAlreadyRegisteredUserBox.sendKeys(email);
         passwordAlreadyRegisteredUserBox.sendKeys(password);
-        SubmitLoginButton.click();
+        submitLoginButton.click();
     }
 }

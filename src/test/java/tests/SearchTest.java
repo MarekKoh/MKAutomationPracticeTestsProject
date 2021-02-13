@@ -14,19 +14,19 @@ public class SearchTest extends BaseTest {
 
     @Test
     public void shouldReturnProductListWhenSearchForExistingProducts() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(driver, wait);
         homePage.openPage();
         homePage.searchForProduct("dress");
-        SearchResultPage searchResultPage = new SearchResultPage(driver);
+        SearchResultPage searchResultPage = new SearchResultPage(driver, wait);
         Assertions.assertEquals(7, searchResultPage.getNumberOfFoundedProducts());
     }
 
     @Test
     public void shouldReturnEmptyProductListWhenSearchForNonExistingProducts() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(driver, wait);
         homePage.openPage();
         homePage.searchForProduct("drill");
-        SearchResultPage searchResultPage = new SearchResultPage(driver);
+        SearchResultPage searchResultPage = new SearchResultPage(driver, wait);
         Assertions.assertEquals(0, searchResultPage.getNumberOfFoundedProducts());
     }
 

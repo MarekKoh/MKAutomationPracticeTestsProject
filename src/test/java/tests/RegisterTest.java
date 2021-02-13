@@ -13,15 +13,15 @@ public class RegisterTest extends BaseTest {
 
     @Test
     void shouldRegisterUserWhenMandatoryFieldsAreFilled() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(driver, wait);
         homePage.openPage();
         homePage.goToLoginPage();
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver, wait);
         RandomUser randomUser = new RandomUser();
         loginPage.goToRegisterPage(randomUser.email);
 
-        RegisterPage registerPage = new RegisterPage(driver);
+        RegisterPage registerPage = new RegisterPage(driver, wait);
         registerPage.registerUser(randomUser);
 
         Assertions.assertTrue(loginPage.isUserLoggedIn());
@@ -29,15 +29,15 @@ public class RegisterTest extends BaseTest {
 
     @Test
     void shouldDisplayCorrectAlertsWhenPasswordIsMissing() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(driver, wait);
         homePage.openPage();
         homePage.goToLoginPage();
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver, wait);
         RandomUser randomUser = new RandomUser();
         loginPage.goToRegisterPage(randomUser.email);
 
-        RegisterPage registerPage = new RegisterPage(driver);
+        RegisterPage registerPage = new RegisterPage(driver, wait);
         randomUser.password = "";
         registerPage.registerUser(randomUser);
 

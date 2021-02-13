@@ -11,7 +11,7 @@ public class NewsletterTest extends BaseTest {
 
     @Test
     public void  subscribeNewsletterByValidEmail() {
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(driver, wait);
         homePage.openPage();
         RandomUser randomUser = new RandomUser();
         homePage.subscribeToNewsletter(randomUser.email);
