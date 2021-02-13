@@ -10,13 +10,13 @@ import pageobjects.ShoppingPage;
 public class ShoppingTest extends BaseTest{
 
     @Test
-    public void addProductsToTheCart() throws InterruptedException {
+    public void addProductsToTheCart() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.openPage();
         homePage.goToShoppingPage();
         ShoppingPage shoppingPage = new ShoppingPage(driver, wait);
         shoppingPage.addRandomProductsToTheCart(2);
-        Thread.sleep(5000);
+
         Assertions.assertEquals(2, homePage.getQuantityOfItemsInTheCart());
     }
 }

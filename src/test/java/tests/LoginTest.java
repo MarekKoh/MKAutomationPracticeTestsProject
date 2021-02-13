@@ -24,6 +24,16 @@ public class LoginTest extends BaseTest {
                 isMyAccountHeaderDisplayed("MY ACCOUNT"));
     }
     @Test
+    void shouldNotToLogInWithWrongPass() {
+        HomePage homePage = new HomePage(driver, wait);
+        homePage.openPage();
+        homePage.goToLoginPage();
+
+        LoginPage loginPage = new LoginPage(driver, wait);
+        loginPage.goToUsersAccountPage("abcd@gmail.com", "01010101");
+        Assertions.assertTrue(loginPage.isAuthenticationFailedAlertDisplayed());
+    }
+    @Test
     void shouldLogOut() {
         HomePage homePage = new HomePage(driver, wait);
         homePage.openPage();
@@ -35,5 +45,17 @@ public class LoginTest extends BaseTest {
         usersAccountPage.signUserOut();
 
         Assertions.assertTrue(loginPage.isUserLoggedOut());
+    }
+    @Test
+    void shouldRetrievePassword(){
+        HomePage homePage = new HomePage(driver, wait);
+        homePage.openPage();
+        homePage.goToLoginPage();
+
+        LoginPage loginPage = new LoginPage(driver, wait);
+        loginPage.retrieveForgottenPassword("abcd@gmail.com");
+
+        Assertions.assertTrue(loginPage.
+                isAlertConfirmationEmailDisplayed());
     }
 }

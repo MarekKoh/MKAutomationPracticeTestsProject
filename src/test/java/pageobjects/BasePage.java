@@ -44,6 +44,9 @@ public class BasePage {
         this.wait = wait;
         PageFactory.initElements(driver, this);
     }
+    public void goToShoppingPage() {
+        driver.get(womenCatPageUrl);
+    }
 
     public void searchForProduct(String productName) {
         searchBox.sendKeys(productName);
@@ -59,8 +62,8 @@ public class BasePage {
         submitNewsletterButton.click();
     }
 
-    public boolean isNewsletterAlertDisplayed(String expectedAlertText) {
-        return newsletterSuccessAlert.getText().contains(expectedAlertText);
+    public boolean isNewsletterAlertDisplayed() {
+        return newsletterSuccessAlert.getText().contains("You have successfully subscribed");
     }
     public int getQuantityOfItemsInTheCart() {
         Actions builder = new Actions(driver);

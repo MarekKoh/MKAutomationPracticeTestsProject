@@ -13,8 +13,6 @@ public class HomePage extends BasePage {
         super(driver, wait);
     }
 
-    public void goToShoppingPage() {
-        driver.get(womenCatPageUrl);
-    }
+
 
 }
